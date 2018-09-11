@@ -1,2 +1,0 @@
-# VBAlibrary
-VBA Function library
