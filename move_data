@@ -1,0 +1,6 @@
+'#### SELECTION ###
+
+Rows("1:1").Select 'Select row
+Columns("1:1") 'Select columns
+Range("A1:B2").Select 'Select Range of 2x2
+Cells.Select 'Select all the cells
