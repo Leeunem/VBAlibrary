@@ -27,7 +27,7 @@ MsgBox "Cannot find the workboox"
 WB.Close
 
 ExitTheSub:
-End Sub
+'End Sub
 
 ###Options
 'Kill WBpath 'Delete the sfile on the hardrive
