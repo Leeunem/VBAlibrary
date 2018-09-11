@@ -1,7 +1,4 @@
-# VBAlibrary
-VBA Function library
-
-#### Import file ###
+'#### Import file ###
 Dim WBpath As String
 Dim WB As Workbook
 
@@ -12,7 +9,6 @@ Workbooks.Open (WBpath)
 On Error GoTo 0
 
 Set WB = ActiveWorkbook
-ActiveSheet.Name = "deals"
 
 Application.ScreenUpdating = False
 Application.DisplayAlerts = False
@@ -34,4 +30,5 @@ ExitTheSub:
 End Sub
 
 ###Options
-Kill WBpath 'Delete the sfile on the hardrive
+'Kill WBpath 'Delete the sfile on the hardrive
+'ActiveSheet.Name = "SHEET_NAME"
