@@ -1,3 +1,10 @@
+'############## Dynamics macros
+Private Sub Worksheet_Change(ByVal Target As Range)
+    If Target.Address = "$A$1" Then
+        Call MACRO_NAME
+    End If
+End Sub
+'############### Clickable cells
 Private Sub Worksheet_SelectionChange(ByVal Target As Excel.range)
 'Updateby Extendoffice 20161123
  
