@@ -1,0 +1,4 @@
+'### Throught columns
+For i = 1 to 100
+    Columns(i).Select
+next i
