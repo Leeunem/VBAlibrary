@@ -1,0 +1,21 @@
+'### VLOOKUP
+Dim lRow_db As Integer
+Dim lRow As Integer
+Dim result As String
+
+lRow_db = Sheets("DB_GCLM").Cells(Rows.Count, 1).End(xlUp).Row
+lRow = Cells(Rows.Count, 1).End(xlUp).Row
+
+Set data_rg = ActiveWorkbook.Sheets("###").Range("##:##" & lRow_db)
+VLU_column = ##
+
+On Error GoTo Skip
+For i = # To lRow - 2
+Set VLU_value = Cells(i, #)
+result = Application.WorksheetFunction.vlookup(VLU_value, data_rg, VLU_column, False)
+Cells(i, #).Value = result
+
+Skip:
+Next i
+
+'### IF
