@@ -1,3 +1,4 @@
+'########## Import files from a specific folder
 Sub importprocessD_fromfolder()
 
 Dim wb As Workbook
@@ -58,3 +59,40 @@ ResetSettings:
 
 End Sub
 
+'########## Import file on after the other with manual selection of location
+Sub loop_import()
+Dim lRow As Integer
+Dim i As Integer
+Dim rng As Range
+
+Set WBo = ActiveWorkbook
+On Error GoTo ExitTheSub
+
+Application.DisplayAlerts = False
+Application.ScreenUpdating = False
+
+For i = 0 To 1
+lRow = Cells(Rows.Count, 1).End(xlUp).Row
+WBpath = Application.GetOpenFilename()
+Workbooks.Open (WBpath)
+Set WBn = ActiveWorkbook
+Set rng = ActiveSheet.UsedRange
+If i > 0 Then Rows(1).Delete
+rng.Select
+Selection.Copy
+WBo.Sheets("DB_RF").Activate
+Cells(lRow + i, 1).Select
+Selection.PasteSpecial Paste:=xlPasteValues
+WBn.Close
+Kill WBpath
+
+Next i
+On Error GoTo 0
+
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+
+Sheets("Dashboard").Activate
+
+ExitTheSub:
+End Sub
