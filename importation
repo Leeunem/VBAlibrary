@@ -1,0 +1,98 @@
+'########## Import files from a specific folder
+Sub importprocessD_fromfolder()
+
+Dim wb As Workbook
+Dim myPath As String
+Dim myFile As String
+Dim myExtension As String
+Dim FldrPicker As FileDialog
+
+Set DWS = ActiveWorkbook
+
+  Application.ScreenUpdating = False
+  Application.EnableEvents = False
+  Application.Calculation = xlCalculationManual
+
+'Retrieve Target Folder Path From User
+  Set FldrPicker = Application.FileDialog(msoFileDialogFolderPicker)
+
+    With FldrPicker
+      .Title = "Select A Target Folder"
+      .AllowMultiSelect = False
+        If .Show <> -1 Then GoTo NextCode
+        myPath = .SelectedItems(1) & "\"
+    End With
+
+'In Case of Cancel
+NextCode:
+  myPath = myPath
+  If myPath = "" Then GoTo ResetSettings
+
+'Target File Extension (must include wildcard "*")
+  myExtension = "*.xls*"
+
+'Target Path with Ending Extention
+  myFile = Dir(myPath & myExtension)
+
+'IMPORT Investors
+  Do While myFile <> ""
+    'Set variable equal to opened workbook
+      Set wb = Workbooks.Open(Filename:=myPath & myFile)
+    
+    'Ensure Workbook has opened before moving on to next line of code
+      DoEvents
+    
+    'CODE TO PROCESS
+    Call importauto_dealers
+
+DoEvents
+
+    'Get next file name
+      myFile = Dir
+    
+    Loop
+
+ResetSettings:
+ Application.EnableEvents = True
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
+
+End Sub
+
+'########## Import file on after the other with manual selection of location
+Sub loop_import()
+Dim lRow As Integer
+Dim i As Integer
+Dim rng As Range
+
+Set WBo = ActiveWorkbook
+On Error GoTo ExitTheSub
+
+Application.DisplayAlerts = False
+Application.ScreenUpdating = False
+
+For i = 0 To 1
+lRow = Cells(Rows.Count, 1).End(xlUp).Row
+WBpath = Application.GetOpenFilename()
+Workbooks.Open (WBpath)
+Set WBn = ActiveWorkbook
+Set rng = ActiveSheet.UsedRange
+If i > 0 Then Rows(1).Delete
+rng.Select
+Selection.Copy
+WBo.Sheets("DB_RF").Activate
+Cells(lRow + i, 1).Select
+Selection.PasteSpecial Paste:=xlPasteValues
+WBn.Close
+Kill WBpath
+
+Next i
+On Error GoTo 0
+
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+
+Sheets("Dashboard").Activate
+
+ExitTheSub:
+End Sub
