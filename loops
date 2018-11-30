@@ -1,17 +1,36 @@
 '### IF LOOPS
-If Cells(i, 1).Value <> " 0A0" _
-        And Cells(i, 1).Value <> " 4JD" _
-        And Cells(i, 1).Value <> " 81N" _
-        And Cells(i, 1).Value <> " 97U" _
-        And Cells(i, 1).Value <> " A38" _
-        And Cells(i, 1).Value <> " HP5" _
-        And Cells(i, 1).Value <> " ISM" _
-        And Cells(i, 1).Value <> " MLJ" _
-        And Cells(i, 1).Value <> " SBI" _
-        And Cells(i, 1).Value <> " TFV" _
-        And Cells(i, 1).Value <> " 7U8" & Cells(i, 5).Value <> " USD" _
-        And Cells(i, 1).Value <> " 9RK" & Cells(i, 5).Value <> " USD" _
-        And Cells(i, 1).Value <> " DUZ" & Cells(i, 5).Value <> " USD" _
-        And Cells(i, 1).Value <> " LVD" & Cells(i, 5).Value <> " USD" Then
+If Cells(i, 1).Value <> "###" _
+        And Cells(i, 1).Value <> "###" _
+        And Cells(i, 1).Value <> "###" & Cells(i, 5).Value <> "###" _
+        And Cells(i, 1).Value <> "###" & Cells(i, 5).Value <> "###" _Then
         Rows(i).EntireRow.Delete
        End If
+
+
+'### String iteration
+Sub copyunwinds()
+    
+Dim lRow As Integer
+Dim allunwinds As String
+Dim DataObj As New MSForms.DataObject
+
+
+lRow = ActiveSheet.Cells(ActiveSheet.Rows.Count, "K").End(xlUp).Row
+    
+    For i = 4 To lRow
+        If ActiveSheet.range("O" & i) = 3 Then
+            allunwinds = allunwinds & Cells(i, 11).Value & " "
+        End If
+    Next i
+        
+If allunwinds = "" Then
+    MsgBox "No unwind detected"
+    Exit Sub
+
+Else
+MsgBox allunwinds
+DataObj.SetText allunwinds
+DataObj.PutInClipboard
+
+End If
+End Sub
