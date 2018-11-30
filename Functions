@@ -18,4 +18,21 @@ Cells(i, #).Value = result
 Skip:
 Next i
 
-'### IF
+'### OPEN LINK
+Private Declare Function ShellExecute _
+  Lib "shell32.dll" Alias "ShellExecuteA" ( _
+  ByVal hWnd As Long, _
+  ByVal Operation As String, _
+  ByVal Filename As String, _
+  Optional ByVal Parameters As String, _
+  Optional ByVal Directory As String, _
+  Optional ByVal WindowStyle As Long = vbMinimizedFocus _
+  ) As Long
+Option Explicit
+
+Sub openurl()
+
+lSuccess = ShellExecute(0, "Open", "https://test" & _
+"test.com")
+
+End Sub
