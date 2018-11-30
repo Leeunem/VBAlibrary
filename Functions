@@ -19,6 +19,8 @@ Skip:
 Next i
 
 '### OPEN LINK
+Option Explicit
+
 Private Declare Function ShellExecute _
   Lib "shell32.dll" Alias "ShellExecuteA" ( _
   ByVal hWnd As Long, _
@@ -28,10 +30,10 @@ Private Declare Function ShellExecute _
   Optional ByVal Directory As String, _
   Optional ByVal WindowStyle As Long = vbMinimizedFocus _
   ) As Long
-Option Explicit
 
-Sub openurl()
+Public Sub openurl()
 
+Dim lSuccess As Long
 lSuccess = ShellExecute(0, "Open", "https://test" & _
 "test.com")
 
