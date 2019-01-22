@@ -1,0 +1,2 @@
+####### AutoFit of comuns ###
+Columns("A:A").EntireColumn.AutoFit
