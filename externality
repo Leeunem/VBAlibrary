@@ -14,7 +14,7 @@ Private Declare Function ShellExecute _
 Public Sub OpenUrl()
 
     Dim lSuccess As Long
-    lSuccess = ShellExecute(0, "Open", "https://next1.accessedge.com/gcmgui/servlet/ControllerServlet?bscSystems=Global&bscScrollSize=100&bscDepository=Any&bscTradeDate=&bscSettDate=&bscInstructionType=All&bscQuantity=&bscTradeRef=&bscClientRef=&bscSecurityIdType=Any&bscSecurityId=&bscPosSecurityIdType=Any&bscPosSecurityId=&bscTradeStatus=Verified&bscSKAccount=&bscInstructingParty=&bscSettlementLocation=&bscTradeSource=All&bscInternalStatus=All&bscMDJRef=&bscReceiveStartDate=&bscReceiveStartTime=00:00&bscReceiveEndDate=&bscReceiveEndTime=23:59&bscProcessStartDate=&bscProcessStartTime=00:00&bscProcessEndDate=&bscProcessEndTime=23:59&bscApprovalStatus=All&bscPendingAction=All&bscActionToPerform=View&bscDepositoryMultiple=JPN1,HKG1,SGP1&bscErrorMsgText=All&bscCLMStatus=All&bscACEStatus=All&className=TradeAction&packageName=com.bankofny.bds.gcm.userinterface.action.triparty&dealerId=ISM&findByDealerId=FIND")
+    lSuccess = ShellExecute(0, "Open", "#####HTTP#####")
 
 End Sub
 '########## Create a new mail
