@@ -1,3 +1,18 @@
+'########## Get data from WB in read only
+
+Din src As Workbook
+Set src = Workbooks.Open("#path#", True, True)
+
+'########## Import with universal link
+
+Sub serverfolder()
+    Dim StrFile As String
+    StrFile = Dir("\\ServerIP\Folder\" & "*")
+    Do While StrFile <> ""
+         StrFile = Dir
+    Loop
+End Sub
+
 '########## Import files from a specific folder
 Sub importprocessD_fromfolder()
 
