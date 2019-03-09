@@ -1,17 +1,31 @@
-Sub protect_all_sheets()
+Sub script_protect_sheets()
+Dim pass As String
+Dim conf_pass As String
+
+Dim FirstSheet As Integer
+Dim LastSheet As Integer
+
 top:
-pass = InputBox("password?")
-repass = InputBox("Verify Password")
+
+FirstSheet = 
+LastSheet = 
+
+pass = InputBox("Please insert your password")
+conf_pass = InputBox("Please confirm your password")
 If Not (pass = repass) Then
-MsgBox "you made a boo boo"
-Goto top
+  MsgBox "Confirmation does not match"
+  Goto top
 End If
-For i = 1 To Worksheets.Count
-If Worksheets(i).ProtectContents = True Then Goto oops
-Next
+For i = First Sheet To LastSheet
+  If Worksheets(i).ProtectContents = True Then Goto Error01
+  Next i
 For Each s In ActiveWorkbook.Worksheets
-s.Protect Password:=pass
+  s.Protect Password:=pass
 Next
+
 Exit Sub
-oops: MsgBox "I think you have some sheets that are already protected. Please unprotect all sheets then running this Macro."
+
+Error01:
+MsgBox "Some sheets are already protected. Please unprotect all sheets first."
+
 End Sub
