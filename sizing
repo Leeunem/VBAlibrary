@@ -1,9 +1,34 @@
-### Find last row ###
+########## Find last row ###
 
 Dim lRow As Integer
 lRow = Cells(Rows.Count, 1).End(xlUp).Row
 
-### Find last column ###
+########## Find last column ###
 
 Dim lCol As Integer
 lCol = Cells(1, .Columns.Count).End(xlToLeft).Column
+
+########## Return value of last empty cell (to identify blocks) ###
+
+' Define a block between Title row an last row before next title
+' BlockRange is the Range Variable which is equal to the block
+'
+'
+'
+Dim BlockRange As Range
+Dim BlockHeigh As Integer
+Dim BlockStart_Row As Integer
+Dim BlockStart_Column As Integer
+
+'SetUp Of First Cell of the Block
+BlockStart_Row = 3
+BlockStart_Column = 2
+
+Cells(BlockStart_Row + 1, BlockStart_Column).Select
+Do Until ActiveCell.Value <> ""
+  If ActiveCell.Value = "" Then BlockHeigh = BlockHeigh + 1
+  ActiveCell.Offset(1, 0).Select
+Loop
+
+
+BlockRange = Range(Cells(BlockStart_Row, BlockStart_Column), Cells(BlockStart_Row + BlockHeigh, BlockStart_Column))
