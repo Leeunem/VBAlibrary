@@ -31,4 +31,4 @@ Do Until ActiveCell.Value <> ""
 Loop
 
 
-BlockRange = Range(Cells(BlockStart_Row, BlockStart_Column), Cells(BlockStart_Row + BlockHeigh, BlockStart_Column))
+Set BlockRange = Range(Cells(BlockStart_Row, BlockStart_Column), Cells(BlockStart_Row + BlockHeigh, BlockStart_Column))
