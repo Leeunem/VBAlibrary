@@ -12,7 +12,7 @@ LastSheet = 2
 
 pass = InputBox("Please insert your password")
 conf_pass = InputBox("Please confirm your password")
-If Not (pass = repass) Then
+If Not (pass = conf_pass) Then
   MsgBox "Confirmation does not match"
   GoTo top
 End If
