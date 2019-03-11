@@ -7,17 +7,17 @@ Dim LastSheet As Integer
 
 top:
 
-FirstSheet = 
-LastSheet = 
+FirstSheet = 1
+LastSheet = 2
 
 pass = InputBox("Please insert your password")
 conf_pass = InputBox("Please confirm your password")
 If Not (pass = repass) Then
   MsgBox "Confirmation does not match"
-  Goto top
+  GoTo top
 End If
-For i = First Sheet To LastSheet
-  If Worksheets(i).ProtectContents = True Then Goto Error01
+For i = FirstSheet To LastSheet
+  If Worksheets(i).ProtectContents = True Then GoTo Error01
   Next i
 For Each s In ActiveWorkbook.Worksheets
   s.Protect Password:=pass
