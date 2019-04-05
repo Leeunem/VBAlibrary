@@ -1,0 +1,90 @@
+Sub mail()
+
+'########## VARIABLE LIBRARY ##########
+Dim i As Integer
+
+Dim objOutlook As Object
+Dim objMail As Object
+
+Dim MasterWB As Workbook
+Dim db As Workbook
+
+Dim datasheet As Worksheet
+
+Dim rngTo As Range
+Dim rngCC As Range
+Dim rngSubject As Range
+Dim rngAttach As Range
+
+Dim BodyTemplate As String
+Dim body_path As String
+Dim db_path As String
+Dim db_sheet As String
+
+'########## SET UP ##########
+'Master Set Up
+Set MasterWB = ActiveWorkbook
+Set objOutlook = CreateObject("Outlook.Application")
+Set objMail = objOutlook.CreateItem(0)
+
+'Database Set Up
+db_path = "###" '..............................................................User Preference
+db_sheet = "###" '.............................................................User Preference
+Workbooks.Open Filename:=db_path
+Set db = ActiveWorkbook
+Set datasheet = Sheets(db_sheet)
+
+'Mail Set Up
+body_path = "###"
+
+'########## SCRIPT ##########
+i = ActiveCell.Row '............................................................User Preference
+
+With ActiveSheet
+    Set rngTo = datasheet.Cells(i, 1)
+    Set rngCC = datasheet.Cells(i, 2)
+    Set rngSubject = datasheet.Cells(i, 3)
+    Set rngAttach = datasheet.Cells(i, 5)
+End With
+
+'Body from Note template
+Body Template = GetFileContent(body_path)
+
+'Body from hardcoded template
+'BodyTemplate = "Line 1" & _
+                vbCrLf & vbCrLf & _
+                "Line 2" & _
+                vbCrLf & vbCrLf & _
+                "Line 3"
+
+With objMail
+    .To = rngTo.Value
+    .CC = rngCC.Value
+    .Subject = rngSubject.Value
+    .Body = BodyTemplate
+    .Attachments.Add rngAttach.Value
+    .Display '/.Send /.Save (to drafts)
+End With
+
+Set objOutlook = Nothing
+Set objMail = Nothing
+Set rngTo = Nothing
+Set rngSubject = Nothing
+Set rngBody = Nothing
+Set rngAttach = Nothing
+
+End Sub
+
+'########## FUNCTIONS ##########
+
+Function GetFileContent(Name As String) As String
+    Dim intUnit As Integer
+    
+    On Error GoTo ErrGetFileContent
+    intUnit = FreeFile
+    Open Name For Input As intUnit
+    GetFileContent = Input(LOF(intUnit), intUnit)
+ErrGetFileContent:
+    Close intUnit
+    Exit Function
+End Function
