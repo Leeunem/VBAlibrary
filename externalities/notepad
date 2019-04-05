@@ -1,0 +1,29 @@
+'########## Create a notepad
+Option Explicit
+Private Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
+'Finds a window with the name, returns the handle.
+Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Integer, ByVal lParam As Any) As Long
+'Sends a specified message to the window handle that you give it.
+Private Declare Function FindWindowEx Lib "user32" Alias "FindWindowExA" (ByVal hWnd1 As Long, ByVal hWnd2 As Long, ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
+'Gets a controls window handle. The form window handle must be specified to get a decent control.
+Const WM_SETTEXT As Long = &HC
+'Sets the text of this control.
+
+Sub Write2Notepad()
+Dim hWnd As Long
+Dim chWnd As Long
+Dim s As String
+
+s = "The value of i is " & 999.99 & vbCrLf
+
+
+
+
+'start Notepad
+Call Shell("NOTEPAD.EXE", vbNormalFocus)
+hWnd = FindWindow("Notepad", vbNullString)
+
+'Find a control window handle... in Notepad, there's the main Textbox that you want.
+chWnd = FindWindowEx(hWnd, ByVal 0&, vbNullString, vbNullString)
+SendMessage chWnd, WM_SETTEXT, ByVal 0&, s
+End Sub
