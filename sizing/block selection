@@ -1,0 +1,19 @@
+Public i As Integer
+Public BlockHeigh As Integer
+Public lRow As Integer
+
+Sub block_selection()
+
+For i = 2 To Cells(Rows.Count, 1).End(xlUp).Row
+BlockHeigh = 0
+    If Cells(i, 2).Value <> Cells(i - 1, 2).Value Then
+        Do While Cells(i, 2).Value = Cells(i + 1, 2).Value
+        BlockHeigh = BlockHeigh + 1
+        i = i + 1
+        Loop
+        Range(Cells(i - BlockHeigh, 1), Cells(i, 3)).Select
+        'Do something with block
+    End If
+Next i
+
+End Sub
