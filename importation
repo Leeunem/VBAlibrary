@@ -22,7 +22,7 @@ Dim myFile As String
 Dim myExtension As String
 Dim FldrPicker As FileDialog
 
-Set DWS = ActiveWorkbook
+Set ThisWB = ActiveWorkbook
 
   Application.ScreenUpdating = False
   Application.EnableEvents = False
