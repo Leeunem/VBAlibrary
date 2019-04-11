@@ -1,0 +1,24 @@
+'########## Return value of last empty cell (to identify blocks) ###
+
+' Define a block between Title row an last row before next title
+' BlockRange is the Range Variable which is equal to the block
+'
+'
+'
+Dim BlockRange As Range
+Dim BlockHeigh As Integer
+Dim BlockStart_Row As Integer
+Dim BlockStart_Column As Integer
+
+'SetUp Of First Cell of the Block
+BlockStart_Row = 3
+BlockStart_Column = 2
+
+Cells(BlockStart_Row + 1, BlockStart_Column).Select
+Do Until ActiveCell.Value <> ""
+  If ActiveCell.Value = "" Then BlockHeigh = BlockHeigh + 1
+  ActiveCell.Offset(1, 0).Select
+Loop
+
+
+Set BlockRange = Range(Cells(BlockStart_Row, BlockStart_Column), Cells(BlockStart_Row + BlockHeigh, BlockStart_Column))
