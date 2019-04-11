@@ -35,7 +35,7 @@ Set db = ActiveWorkbook
 Set datasheet = Sheets(db_sheet)
 
 'Mail Set Up
-body_path = "###"
+body_path = "###".............................................................User Preference
 
 '########## SCRIPT ##########
 i = ActiveCell.Row '............................................................User Preference
