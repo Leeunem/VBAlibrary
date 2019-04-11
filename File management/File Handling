@@ -1,0 +1,3 @@
+'New Worbook
+Dim wb As Workbook
+Set wb = Workbooks.Add
