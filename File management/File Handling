@@ -1,3 +1,14 @@
 'New Worbook
 Dim wb As Workbook
 Set wb = Workbooks.Add
+
+'Save workbook
+Dim file_path As String
+Dim file_name As String
+
+file_path = "###\###\###\" 'Must end with "\"
+file_name = "###" 
+
+ActiveWorkbook.SaveAs Filename:= _
+ file_path & file_name & ".xlsx", FileFormat:= _
+        xlOpenXMLWorkbook, CreateBackup:=False
