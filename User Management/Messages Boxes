@@ -1,0 +1,16 @@
+Button-Clicked Constant-Value
+Ok-vbOk-1
+Cancel-vbCancel-2
+Abort-vbAbort-3
+Retry-vbRetry-4
+Ignore-vbIgnore-5
+Yes-vbYes-6
+No-vbNo-7
+
+' ########## Exit Macro if Answer is no
+Result = MsgBox( _
+"Macro will be executed." & vbNewLine & "Do you wish to continue ?", _
+vbOKCancel + vbExclamation, _
+"Obo Assistant")
+
+If Result <> vbOK Then Exit Sub
