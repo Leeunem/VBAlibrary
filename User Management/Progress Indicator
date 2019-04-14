@@ -1,0 +1,28 @@
+Sub initiate ()
+ProgressIndicator.Show
+End Sub
+
+Sub code()
+Dim i As Integer, j As Integer, pctCompl As Single
+
+Sheet1.Cells.Clear
+
+'  Dummy loop for proof of concept
+For i = 1 To 100
+    For j = 1 To 1000
+        Cells(i, 1).Value = j
+    Next j
+    pctCompl = i
+    progress pctCompl
+Next i
+
+End Sub
+
+Sub progress(pctCompl As Single)
+
+ProgressIndicator.Text.Caption = pctCompl & "% Completed"
+ProgressIndicator.Bar.Width = pctCompl * 2
+
+DoEvents
+
+End Sub
