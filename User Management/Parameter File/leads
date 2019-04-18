@@ -1,0 +1,72 @@
+Private Sub LoadParameters()
+Dim config_file_all As String
+Dim config_file_lines As Variant
+Dim config_file_num_rows As Long
+ 
+    'Load the File
+    fnum = FreeFile()
+    txtFileName = "D:\Dropbox\Projets\Text As Parameters\parameters.txt"
+    Open txtFileName For Input As fnum
+    config_file_all = Input$(LOF(fnum), #fnum)
+    Close fnum
+ 
+    ' Break the file into lines.
+    config_file_lines = Split(config_file_all, vbCrLf)
+    config_file_num_rows = UBound(config_file_lines)
+ 
+    For S = 0 To config_file_num_rows
+        Parameter = Split(Replace(config_file_lines(S), " ", ""), "=")
+ 
+        'Replace default values with new configuration
+        Select Case Parameter(0)
+            Case "variable1"
+                variable1 = Parameter(1)
+            Case "variable2"
+                variable2 = Parameter(1)
+        End Select
+        S = S + 1
+    Next
+End Sub
+
+'#################################### https://www.excelforum.com/excel-programming-vba-macros/332741-getting-text-file-into-a-vba-string-variable.html
+Open "C:\Myfile.txt" for input as #1
+Input #1, ShortText
+Close #1
+
+Mystring=ShortText
+
+##
+Sub ReadFile()
+Dim hFile As Long
+Dim strFile As String
+Dim strData As String * 4
+
+hFile = FreeFile
+strFile = "C:\Something.txt"
+Open strFile For Binary Access Read As hFile Len = 4
+Get hFile, 1, strData
+Close hFile
+MsgBox strData
+End Sub
+
+###
+Sub Tester4()
+Dim fname As String
+Dim sVal As String
+fname = "C:\xlText\MyText.txt"
+sVal = OpenTextFileToString2(fname)
+Debug.Print sVal
+End Sub
+
+
+
+Function OpenTextFileToString2(ByVal strFile As String) As String
+' RB Smissaert - Author
+Dim hFile As Long
+hFile = FreeFile
+Open strFile For Input As #hFile
+OpenTextFileToString2 = Input$(LOF(hFile), hFile)
+Close #hFile
+End Function
+
+
