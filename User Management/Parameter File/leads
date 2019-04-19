@@ -69,4 +69,32 @@ OpenTextFileToString2 = Input$(LOF(hFile), hFile)
 Close #hFile
 End Function
 
+'###################################### https://www.excel-easy.com/vba/examples/read-data-from-text-file.html
+'-------------------------------
+'Some information here...
+'
+'latitude: 72n31
+'longitude: 15w27
+'
+'some more information here...
+'-------------------------------
 
+Sub test2()
+
+Dim myFile As String, text As String, textline As String, posLat As Integer, posLong As Integer
+
+myFile = "D:\Dropbox\Projets\Text As Parameters/prm2.txt"
+'myFile = Application.GetOpenFilename()
+Open myFile For Input As #1
+Do Until EOF(1)
+    Line Input #1, textline
+    text = text & textline
+    'Debug.Print text
+Loop
+Close #1
+posLat = InStr(text, "latitude") 'give the number of character before the looking word
+posLong = InStr(text, "longitude")
+Range("A1").Value = Mid(text, posLat + 10, 5) 'find value with relative position (posLat + number of character of the word
+Range("A2").Value = Mid(text, posLong + 11, 5)
+
+End Sub
