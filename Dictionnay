@@ -1,0 +1,27 @@
+Sub StructureDictionnaire()
+'par Excel-Malin.com ( https://excel-malin.com )
+
+' code nécessite que la référence "Microsoft Scripting Runtime" soit activée
+
+'------------------------------------------------
+'création de l'Objet Dictionnaire
+Dim MonDico As New Scripting.Dictionary
+ 
+'création de la Clé et de sa Valeur
+Cle = 68100
+Valeur = "Mulhouse"
+ 
+'vérification si la Clé n'est pas déjà présente dans le Dictionnaire
+If Not MonDico.Exists(Cle) Then
+    'ajout de la paire Clé + Valeur dans le Dictionnaire
+    MonDico.Add Cle, Valeur
+End If
+ 
+'pour accéder à la Valeur de la Clé:
+MsgBox MonDico(Cle) 'si la Clé est contenue dans une variable (dépend de l'utilisation)
+MsgBox MonDico(68100) 'on peut utiliser la Clé directement (dépend de l'utilisation)
+ 
+'pour supprimer le Dictionnaire de la mémoire
+Set MonDico = Nothing
+ 
+End Sub
