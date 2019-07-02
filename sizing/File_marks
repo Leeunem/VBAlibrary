@@ -4,7 +4,7 @@ lRow = Cells(Rows.Count, 1).End(xlUp).Row
 
 '########## Find last column ###
 Dim lCol As Integer
-lCol = Cells(1, .Columns.Count).End(xlToLeft).Column
+lCol = Cells(1, Columns.Count).End(xlToLeft).Column
 
 '########## Find column with text ABCD ###
 Public TargetTextRange As Range
