@@ -1,0 +1,23 @@
+Sub Scraper()
+ 
+Dim ieObj As InternetExplorer
+Dim htmlEle As IHTMLElement
+Dim i As Integer
+
+Set ieObj = New InternetExplorer
+ieObj.Visible = True
+ieObj.Navigate "https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"
+ 
+Application.Wait Now + TimeValue("00:00:01")
+
+For Each htmlEle In ieObj.document.getElementsByClassName("wikitable")(0).getElementsByTagName("tr")
+ For i = 0 To 5
+    Debug.Print htmlEle.Children(i).textContent
+ Next i
+Next htmlEle
+
+
+'(0): First element identified (1) for second, (2) for third...
+'.Children: first tag element below the upper narrowed element
+
+End Sub
