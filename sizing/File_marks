@@ -6,6 +6,10 @@ lRow = Cells(Rows.Count, 1).End(xlUp).Row
 Dim lCol As Integer
 lCol = Cells(1, Columns.Count).End(xlToLeft).Column
 
+Sub FindlRow(ColNumber As Integer)
+Cells(ColNumber, Columns.Count).End(xlToLeft).Column
+End Sub
+
 '########## Find column with text ABCD ###
 Public TargetTextRange As Range
 Set TargetTextRange = ActiveSheet.UsedRange.Find("ABCD", , xlValues, xlWhole)
