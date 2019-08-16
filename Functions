@@ -38,3 +38,11 @@ lSuccess = ShellExecute(0, "Open", "https://test" & _
 "test.com")
 
 End Sub
+
+'########## GET HARDCODED EU FORMAT DATE ##########
+Function EUdate()
+Dim EUtoday As String
+
+EUtoday = Day(Date) & "/" & Month(Date) & "/" & Year(Date)
+
+End Function
