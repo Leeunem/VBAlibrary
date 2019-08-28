@@ -94,4 +94,16 @@ Application.ScreenUpdating = True
 If CleanSource = True Then Kill WBpath
 
 End Sub
+
 '----------------------------------------------------------------
+'  GET SIZE
+'----------------------------------------------------------------
+Function GetSize(ReturnRow As Boolean, ReturnColumn As Boolean, Target As Integer)
+' ReturnRow = True if expect to find last row
+' ReturnColumn = True if expect to find last Column
+' Target is the number of the row of the columns to verify last Cells
+
+If ReturnRow = True Then GetSize = Cells(Rows.Count, Target).End(xlUp).Row
+If ReturnColumn = True Then GetSize = Cells(Target, Columns.Count).End(xlToLeft).Column
+
+End Function
