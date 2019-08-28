@@ -1,0 +1,64 @@
+'----------------------------------------------------------------
+'  ESSENTIALS LIBRARY
+'----------------------------------------------------------------
+
+'----------------------------------------------------------------
+'  IMPORTATION
+'----------------------------------------------------------------
+
+Sub uploader(TargetSheet As String, KeepHeader As Boolean, Affix As Boolean, CleanSource As Boolean)
+' TargetSheet- Sheet name to put data into
+' KeepHeader - = False if the first row needs to be removed before importation
+' Affix = True if data should be put after the last row
+' CleanSource = True if source file of data shall be deleted
+
+Dim WBo As Workbook
+Dim WBpath As String
+Dim lRow As Integer
+
+'SetUp
+Set WBo = ActiveWorkbook
+
+WBpath = Application.GetOpenFilename()
+If WBpath = "False" Then Exit Sub
+
+Application.ScreenUpdating = False
+Workbooks.Open (WBpath)
+Set WBn = ActiveWorkbook
+
+lRow = Cells(Rows.Count, 1).End(xlUp).Row
+lCol = Cells(1, Columns.Count).End(xlToLeft).Column
+
+If KeepHeader = False Then Rows(1).Delete
+
+Range(Cells(1, 1), Cells(lRow, lCol)).Select: Selection.Copy
+WBo.Sheets(TargetSheet).Activate
+
+If Affix = True Then
+    Cells(lRow + 1, 1).PasteSpecial Paste:=xlPasteValues
+ElseIf Affix = False Then
+    WBo.Sheets(TargetSheet).Cells.Delete
+    Cells(1, 1).PasteSpecial Paste:=xlPasteValues
+End If
+
+Application.DisplayAlerts = False
+WBn.Close
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+
+If CleanSource = True Then Kill WBpath
+
+End Sub
+
+'----------------------------------------------------------------
+'  GET SIZE
+'----------------------------------------------------------------
+Function GetSize(ReturnRow As Boolean, ReturnColumn As Boolean, Target As Integer)
+' ReturnRow = True if expect to find last row
+' ReturnColumn = True if expect to find last Column
+' Target is the number of the row of the columns to verify last Cells
+
+If ReturnRow = True Then GetSize = Cells(Rows.Count, Target).End(xlUp).Row
+If ReturnColumn = True Then GetSize = Cells(Target, Columns.Count).End(xlToLeft).Column
+
+End Function
