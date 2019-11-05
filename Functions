@@ -98,12 +98,15 @@ End Sub
 '----------------------------------------------------------------
 '  GET SIZE
 '----------------------------------------------------------------
-Function GetSize(ReturnRow As Boolean, ReturnColumn As Boolean, Target As Integer)
-' ReturnRow = True if expect to find last row
-' ReturnColumn = True if expect to find last Column
-' Target is the number of the row of the columns to verify last Cells
+Function GetSize(ReturnRowOrColumn As Boolean, Target As Integer)
+' ReturnRowOrColumns = True if expect to find last row, False if expect to find last Column
+' Target is the number of the row of the columns to verify last Cells, =1 by default
 
-If ReturnRow = True Then GetSize = Cells(Rows.Count, Target).End(xlUp).Row
-If ReturnColumn = True Then GetSize = Cells(Target, Columns.Count).End(xlToLeft).Column
+'If Target = "" Then Target = 1
+
+If ReturnRowOrColumn = True Then
+    GetSize = Cells(Rows.Count, Target).End(xlUp).Row
+Else: GetSize = Cells(Target, Columns.Count).End(xlToLeft).Column
+End If
 
 End Function
