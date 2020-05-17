@@ -1,0 +1,13 @@
+################################################
+Standardization of text
+################################################
+
+__ α is the character to find
+__ pα is the targeted character positions
+__ ß is the number of parasite character between string to extract and targeted characters on the left side
+
+# Extract everything on the left of a character
+=LEFT(A1;FIND("α",A1) -pα -ß)
+
+# Extract everything on the right of a character
+=RIGHT(A1;LEN(A1)-FIND("α";A1) -ß)
