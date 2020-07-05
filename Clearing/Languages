@@ -1,15 +1,26 @@
-é = Ã© = &eacute;
+Sub Replacer_TF8 ()
 
-è = Ã¨ = &egrave;
+Select Case ValeurAVerifier
+    Case "condition 1"
+        'Code si la "condition 1" est remplie
+    Case "condition 2"
+        'Code si la "condition 2" est remplie
+    Case "condition 3", "condition 4"
+        'Code si la "condition 3" ou la "condition 4" est remplie
+    
+    '...
+    
+    Case Else
+        'code si aucune des conditions précédentes n'est remplie
+End Select    
+    
+    
 
-à = Ã  = &agrave;
 
-ï = Ã¯ = &iuml;
 
-ô = Ã´ = &ocirc;
 
-ç = Ã§ = &ccedil;
+End Sub
 
-ê = Ãª = &ecirc;
-
-ù = Ã¹ = &ugrave;
+Function replacer (input_string As String)
+Cells.Replace What:input_string, Replacement:="À", LookAt:=xlPart, SearchOrder:=xlByRows, MatchCase:=False, SearchFormat:=False, ReplaceFormat:=False        
+End Function
