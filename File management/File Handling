@@ -12,3 +12,25 @@ file_name = "###"
 ActiveWorkbook.SaveAs Filename:= _
  file_path & file_name & ".xlsx", FileFormat:= _
         xlOpenXMLWorkbook, CreateBackup:=False
+        
+'############# Generate list of file in a folder
+Sub precheck()
+ 
+Dim oFSO As Object
+Dim oFolder As Object
+Dim oFile As Object
+Dim i As Integer
+ 
+Set oFSO = CreateObject("Scripting.FileSystemObject")
+ 
+Set oFolder = oFSO.GetFolder("C:\Users\Sébastien Coureau\Downloads\Pdf Q2 LU")
+ 
+For Each oFile In oFolder.Files
+ 
+    Cells(i + 1, 1) = oFile.Name
+ 
+    i = i + 1
+ 
+Next oFile
+ 
+End Sub
